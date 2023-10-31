@@ -28,7 +28,7 @@ calculate('<', 0, 0)
  */
 
 public class Task_3 {
-
+    Deque<Integer> history = new ArrayDeque<>();
     //     public int calculate(char op, int a, int b) {
     //         // Напишите свое решение ниже
     //         Deque<Integer> history = new ArrayDeque<>();
@@ -75,7 +75,7 @@ public class Task_3 {
     // }
 
     public int calculate(char op, int a, int b) {
-        Deque<Integer> history = new ArrayDeque<>();
+        
         int res = 0;
         if (op == '+') {
             res = a + b;
