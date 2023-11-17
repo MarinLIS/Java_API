@@ -93,7 +93,7 @@ public class Main {
         nBooks.add(nBook6);
         
         
-        System.out.println(clientChoice(nBooks, clientAnswer()));
+        print(clientChoice(nBooks, clientAnswer()));
         
 
     }
@@ -117,11 +117,12 @@ public class Main {
         }
         if (res.isEmpty()) {
             System.out.println("Ноутбука с такими параметрами нет!");
-            System.out.println("Ваши параметры: " + nBookClient);
+            System.out.println("Ваши параметры: "
+            + "\n" + nBookClient);
             System.out.println("Продолжить поиск по: "
-                    + "\n1 - " + nBookClient.name + " ?"
-                    + "\n2 - " + nBookClient.ram + " ?"
-                    + "\n3 - " + nBookClient.color + " ?");
+                    + "\n1 - " + nBookClient.name + "?"
+                    + "\n2 - " + nBookClient.ram + " Гб?"
+                    + "\n3 - " + nBookClient.color + "?");
             Scanner scanner = new Scanner(System.in);
             String ans = scanner.nextLine();
             if (ans.equals("1")) {
@@ -129,11 +130,11 @@ public class Main {
                 print(selectByName(nBooks, nBookClient));
             }
             if (ans.equals("2")) {
-                System.out.println("Из " + nBookClient.ram + " можем предложить: ");
+                System.out.println("Из объема ОП " + nBookClient.ram + " Гб можем предложить: ");
                 print(selectByRam(nBooks, nBookClient));
             }
             if (ans.equals("3")) {
-                System.out.println("Из "+ nBookClient.color + " можем предложить: ");
+                System.out.println("Из цвета "+ nBookClient.color + " можем предложить: ");
                 print(selectByColor(nBooks, nBookClient));
             }
         }

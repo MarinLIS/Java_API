@@ -11,10 +11,11 @@ public class Note {
 
     @Override
     public String toString() {
-        return "name: " + name + ", ram: " + ram + ", hdMemory: " + hdMemory
-        + ", operatSys: " + operatSys + ", color: " + color + ", on stock: " + stockQty;
+        return "Фирма-производитель: " + name + ", Объем ОП: " + ram + ", Объем памяти ЖД: " + hdMemory
+        + ", Операционная система: " + operatSys + ", цвет: " + color + ", наличие на складе: " + stockQty;
                 
     }
+    
 }
     
 
