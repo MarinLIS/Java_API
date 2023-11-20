@@ -122,20 +122,36 @@ public class Main {
             System.out.println("Продолжить поиск по: "
                     + "\n1 - " + nBookClient.name + "?"
                     + "\n2 - " + nBookClient.ram + " Гб?"
-                    + "\n3 - " + nBookClient.color + "?");
+                    + "\n3 - " + nBookClient.color + "?"
+                    + "\n4 - Выход"
+                    + "\n5 - Запустить поиск заново");
             Scanner scanner = new Scanner(System.in);
             String ans = scanner.nextLine();
-            if (ans.equals("1")) {
-                System.out.println("Из "+ nBookClient.name + " можем предложить: ");
-                print(selectByName(nBooks, nBookClient));
-            }
-            if (ans.equals("2")) {
-                System.out.println("Из объема ОП " + nBookClient.ram + " Гб можем предложить: ");
-                print(selectByRam(nBooks, nBookClient));
-            }
-            if (ans.equals("3")) {
-                System.out.println("Из цвета "+ nBookClient.color + " можем предложить: ");
-                print(selectByColor(nBooks, nBookClient));
+            while (true) {
+                if (ans.equals("1")) {
+                    System.out.println("Из "+ nBookClient.name + " можем предложить: ");
+                    print(selectByName(nBooks, nBookClient));
+                    break;
+                }
+                else if (ans.equals("2")) {
+                    System.out.println("Из объема ОП " + nBookClient.ram + " Гб можем предложить: ");
+                    print(selectByRam(nBooks, nBookClient));
+                    break;
+                }
+                else if (ans.equals("3")) {
+                    System.out.println("Из цвета " + nBookClient.color + " можем предложить: ");
+                    print(selectByColor(nBooks, nBookClient));
+                    break;
+                }
+                else if (ans.equals("4")) {
+                    System.out.println("До свидания!");
+                    break;
+                }
+                else if (ans.equals("5")) {
+                    clientChoice(nBooks, clientAnswer());
+                    break;
+                }
+
             }
         }
         return res;
