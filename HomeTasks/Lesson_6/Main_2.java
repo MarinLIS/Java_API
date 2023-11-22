@@ -1,8 +1,6 @@
 ﻿package HomeTasks.Lesson_6;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -88,7 +86,17 @@ public class Main_2 {
         nBooks.add(nBook5);
         nBooks.add(nBook6);
 
-        print(selectByPar(nBooks, clientAnswer()));
+        Note resultBook = clientAnswer();
+        System.out.println(
+                "Выполнить строгую фильтрацию, учитывая введенным параметрам (1)"
+                +"\nили предложить все варианты по каждому параметру отдельно (2)");
+        Scanner scanner = new Scanner(System.in);
+        String n = scanner.nextLine();
+        if (n.equals("1")) {
+            print(selectByStrict(nBooks, resultBook));
+        } else if (n.equals("2")) {
+            print(selectByPar(nBooks, resultBook));
+        }
     }
     
     static void print(Set<Note> nBooks) {
@@ -97,16 +105,14 @@ public class Main_2 {
         }
     }
 
-   
     static Note clientAnswer() {
         Note nBookClient = new Note();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Для поиска введите параметры");
+        System.out.println("Осуществить поиск по: ");
         
         while (true) {
 
-            System.out.println("Осуществить поиск по: "
-                    + "\n0 - Завершить ввод параметров"
+            System.out.println("\n0 - Завершить ввод параметров"
                     + "\n1 - Производителю "
                     + "\n2 - Минимальному объему оперативной памяти"
                     + "\n3 - Минимальному объему памяти ЖД"
@@ -143,6 +149,7 @@ public class Main_2 {
     
     static Set<Note> selectByPar(Set<Note> nBooks, Note nBookClient) {
         Set<Note> res = new HashSet<>();
+
         for (Note nBook : nBooks) {
             if (nBookClient.name != null && !nBookClient.name.isEmpty()) {
                 if (nBook.name.equalsIgnoreCase(nBookClient.name)) {
@@ -168,6 +175,45 @@ public class Main_2 {
                 if (nBook.color.equalsIgnoreCase(nBookClient.color)) {
                     res.add(nBook);
                 }
+            }
+        }
+        return res;
+    }
+
+    static Set<Note> selectByStrict(Set<Note> nBooks, Note nBookClient) {
+        Set<Note> res = new HashSet<>();
+    
+        for (Note nBook : nBooks) {
+            boolean matchesAll = true;
+    
+            if (nBookClient.name != null && !nBookClient.name.isEmpty()) {
+                if (!nBook.name.equalsIgnoreCase(nBookClient.name)) {
+                    matchesAll = false;
+                }
+            }
+            if (nBookClient.ram != 0) {
+                if (!(nBook.ram >= nBookClient.ram)) {
+                    matchesAll = false;
+                }
+            }
+            if (nBookClient.hdMemory != 0) {
+                if (!(nBook.hdMemory >= nBookClient.hdMemory)) {
+                    matchesAll = false;
+                }
+            }
+            if (nBookClient.operatSys != null && !nBookClient.operatSys.isEmpty()) {
+                if (!nBook.operatSys.equalsIgnoreCase(nBookClient.operatSys)) {
+                    matchesAll = false;
+                }
+            }
+            if (nBookClient.color != null && !nBookClient.color.isEmpty()) {
+                if (!nBook.color.equalsIgnoreCase(nBookClient.color)) {
+                    matchesAll = false;
+                }
+            }
+    
+            if (matchesAll) {
+                res.add(nBook);
             }
         }
         return res;
